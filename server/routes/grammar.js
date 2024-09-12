@@ -1,7 +1,7 @@
 const express = require("express");
 const GrammarRouter = express.Router();
 
-GrammarRouter.post("/grammar", async (res, req) => {
+GrammarRouter.post("/", async (req, res) => {
   res.json({ message: "Grammar Router" });
 });
 
