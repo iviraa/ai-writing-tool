@@ -1,8 +1,40 @@
 const express = require("express");
+const axios = require("axios");
 const GrammarRouter = express.Router();
 
 GrammarRouter.post("/", async (req, res) => {
-  res.json({ message: "Grammar Router" });
+  const { text } = req.body;
+  try {
+    const response = await axios.post(
+      "https://api.openai.com/v1/chat/completions",
+      {
+        model: "gpt-4o-mini",
+        messages: [
+          {
+            role: "system",
+            content:
+              "You are a helpful assistant that checks and corrects grammar erros in the following text. You should only return the corrected sentences without any additional comments or context.",
+          },
+          { role: "user", content: text },
+        ],
+        max_tokens: 100,
+        n: 1,
+        temperature: 0.7,
+        stop: null,
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
+        },
+      }
+    );
+    const paraphrasedText = response.data.choices[0].message.content;
+    res.status(200).json(paraphrasedText || []);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: error.message });
+  }
 });
 
 module.exports = GrammarRouter;
