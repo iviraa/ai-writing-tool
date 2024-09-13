@@ -29,8 +29,8 @@ GrammarRouter.post("/", async (req, res) => {
         },
       }
     );
-    const paraphrasedText = response.data.choices[0].message.content;
-    res.status(200).json(paraphrasedText || []);
+    const correctedText = response.data.choices[0].message.content;
+    res.status(200).json(correctedText || []);
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: error.message });
