@@ -69,7 +69,7 @@ const Editor = () => {
               readOnly
               className="w-full h-48 ml-1 p-4 border border-gray-700 rounded-lg focus:outline-none"
               placeholder="See the results here..."
-              value={result || " "}
+              value={result}
             ></textarea>
           </div>
         </div>
@@ -82,7 +82,9 @@ const Editor = () => {
         <Button onClick={checkGrammar} color="green">
           Correct Grammar
         </Button>
-        <Button onClick={checkParaphrase} color="orange">Paraphrase</Button>
+        <Button onClick={checkParaphrase} color="orange">
+          Paraphrase
+        </Button>
       </div>
     </div>
   );
