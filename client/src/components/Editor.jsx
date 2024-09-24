@@ -36,13 +36,9 @@ const Editor = () => {
   //spelling
   const checkSpelling = async () => {
     try {
-      const response = await axios.post(
-        "http://localhost:8000/api/spelling",
-
-        {
-          text,
-        }
-      );
+      const response = await axios.post("http://localhost:8000/api/spelling", {
+        text,
+      });
       console.log(response.data);
       setResult(response.data);
     } catch (error) {
@@ -51,23 +47,23 @@ const Editor = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 flex flex-col items-center py-2">
-      <div className="flex ">
-        <div className="w-1/2 max-w-4xl pr-2">
+    <div className="min-h-screen bg-gradient-to-r from-[#14213D] to-[#000000] flex flex-col items-center py-2">
+      <div className="flex w-full max-w-6xl">
+        <div className="w-1/2 pr-2 ml-2">
           <div className="mb-6">
             <textarea
               value={text}
               onChange={(e) => setText(e.target.value)}
-              className="w-full h-48 p-4 mr-10 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+              className="w-full h-48 p-4 bg-[#E5E5E5] text-[#14213D] border border-[#FCA311] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#FCA311]"
               placeholder="Start writing here..."
             ></textarea>
           </div>
         </div>
-        <div className="w-1/2 max-w-4xl pl-2 ">
+        <div className="w-1/2 pl-2 mr-2">
           <div className="mb-6">
             <textarea
               readOnly
-              className="w-full h-48 ml-1 p-4 border border-gray-700 rounded-lg focus:outline-none"
+              className="w-full h-48 p-4 bg-[#E5E5E5] text-[#14213D] border border-[#FCA311] rounded-lg focus:outline-none"
               placeholder="See the results here..."
               value={result}
             ></textarea>
@@ -75,7 +71,7 @@ const Editor = () => {
         </div>
       </div>
 
-      <div className="flex justify-between space-x-6">
+      <div className="flex justify-between space-x-6 w-full max-w-6xl">
         <Button onClick={checkSpelling} color="blue">
           Check Spelling
         </Button>
@@ -92,13 +88,13 @@ const Editor = () => {
 
 const Button = ({ onClick, children, color = "blue" }) => {
   const baseClasses =
-    "w-1/3 text-white py-2 rounded-lg shadow-md transition duration-300 ";
+    "w-1/3 text-[#000000] py-2 rounded-lg shadow-md transition duration-300 ";
 
   const colorClasses = {
-    blue: "bg-blue-600 hover:bg-blue-500",
-    green: "bg-green-600 hover:bg-green-500",
-    orange: "bg-orange-600 hover:bg-orange-500",
-    red: "bg-red-600 hover:bg-red-500",
+    blue: "bg-[#FCA311] hover:bg-[#E5E5E5]",
+    green: "bg-[#FCA311] hover:bg-[#E5E5E5]",
+    orange: "bg-[#FCA311] hover:bg-[#E5E5E5]",
+    red: "bg-[#FCA311] hover:bg-[#E5E5E5]",
   };
   return (
     <button
